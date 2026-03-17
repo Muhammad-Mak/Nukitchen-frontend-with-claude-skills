@@ -1,0 +1,139 @@
+/* ========== SHOWROOM / CONTACT ========== */
+
+.showroom-content {
+  padding: var(--space-2xl) 0;
+}
+
+.showroom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.showroom-info {
+  padding-right: var(--space-lg);
+}
+
+.info-block {
+  margin-bottom: var(--space-lg);
+}
+
+.info-label {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.info-block p,
+.info-block a {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.info-block a:hover {
+  color: var(--color-accent);
+}
+
+.showroom-map {
+  margin-top: var(--space-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+/* Form */
+.showroom-form-wrap {
+  background-color: var(--color-warm-1);
+  padding: var(--space-xl);
+}
+
+.form-heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  margin-bottom: var(--space-lg);
+}
+
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--text-small);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.char-count {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-text-secondary);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: var(--text-body);
+  color: var(--color-text);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition-base);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-accent);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit {
+  width: 100%;
+}
+
+.form-success {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.form-success h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  margin-bottom: var(--space-md);
+}
+
+.form-success p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .showroom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .showroom-info {
+    padding-right: 0;
+  }
+}

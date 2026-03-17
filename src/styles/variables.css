@@ -1,0 +1,53 @@
+:root {
+  /* Color Palette — warm neutral luxury */
+  --color-bg: #faf9f7;
+  --color-warm-1: #f3efe9;
+  --color-warm-2: #e8e0d4;
+  --color-accent: #8b7355;
+  --color-accent-light: #a6916f;
+  --color-accent-dark: #6e5a42;
+  --color-text: #2d2d2d;
+  --color-text-secondary: #6b6b6b;
+  --color-dark: #1a1a1a;
+  --color-border: #e0dbd3;
+  --color-overlay: rgba(0, 0, 0, 0.45);
+  --color-white: #ffffff;
+
+  /* Spacing — 8px modular scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+  --space-3xl: 128px;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Cormorant Garamond', serif;
+
+  --text-hero: clamp(2.5rem, 5vw, 4rem);
+  --text-h1: clamp(2rem, 4vw, 3.5rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 2.75rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --text-body: clamp(0.95rem, 1.2vw, 1.1rem);
+  --text-small: clamp(0.8rem, 1vw, 0.9rem);
+  --text-xs: 0.75rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-wide: 1440px;
+  --navbar-height: 80px;
+}
