@@ -11,9 +11,9 @@ const heroSlides = [
 ];
 
 const services = [
-  { title: 'Kitchen Design', desc: 'Collaborative consultations that transform your vision into a detailed plan, blending aesthetics with functionality.' },
-  { title: 'Complete Renovations', desc: 'Full-service kitchen renovations from demolition to final walkthrough — one team, one seamless experience.' },
-  { title: 'Cabinet Installation', desc: 'Expert installation and updates using premium cabinetry from leading manufacturers, tailored to your space.' },
+  { title: 'Kitchen Design', desc: 'Collaborative consultations that transform your vision into a detailed plan, blending aesthetics with functionality.', img: '/images/project-1.jpg' },
+  { title: 'Complete Renovations', desc: 'Full-service kitchen renovations from demolition to final walkthrough — one team, one seamless experience.', img: '/images/project-3.jpg' },
+  { title: 'Cabinet Installation', desc: 'Expert installation and updates using premium cabinetry from leading manufacturers, tailored to your space.', img: '/images/project-5.jpg' },
 ];
 
 const featured = [
@@ -184,9 +184,12 @@ export default function Home() {
           <div className="services-grid" data-animate>
             {services.map((s) => (
               <div key={s.title} className="service-card">
-                <span className="service-icon">&#10022;</span>
-                <h3 className="service-title">{s.title}</h3>
-                <p className="service-desc">{s.desc}</p>
+                <img src={s.img} alt={s.title} className="service-card-img" loading="lazy" />
+                <div className="service-card-overlay" />
+                <div className="service-card-content">
+                  <h3 className="service-title">{s.title}</h3>
+                  <p className="service-desc">{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
