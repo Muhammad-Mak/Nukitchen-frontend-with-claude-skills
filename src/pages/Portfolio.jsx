@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useScrollAnimations } from '../hooks/useScrollAnimations';
+import { useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Reveal, PageTransition } from '../components/MotionElements';
+import Lightbox from '../components/Lightbox';
 import './Portfolio.css';
 
 const allProjects = [
@@ -27,64 +29,78 @@ const categories = ['All', 'Modern', 'Traditional', 'Transitional'];
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('All');
-  const [visible, setVisible] = useState(allProjects);
-  const [fading, setFading] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  useScrollAnimations();
+  const visible = activeFilter === 'All'
+    ? allProjects
+    : allProjects.filter((p) => p.category === activeFilter);
 
-  useEffect(() => {
-    setFading(true);
-    const t = setTimeout(() => {
-      setVisible(
-        activeFilter === 'All'
-          ? allProjects
-          : allProjects.filter((p) => p.category === activeFilter)
-      );
-      setFading(false);
-    }, 300);
-    return () => clearTimeout(t);
-  }, [activeFilter]);
+  const openLightbox = useCallback((idx) => setLightboxIndex(idx), []);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const navLightbox = useCallback((idx) => setLightboxIndex(idx), []);
 
   return (
-    <main className="portfolio-page">
-      <section className="page-hero">
-        <img src="/images/portfolio-hero.jpg" alt="Nukitchens portfolio" className="page-hero-img" />
-        <div className="page-hero-overlay" />
-        <div className="page-hero-content">
-          <span className="hero-label">Our Work</span>
-          <h1 className="hero-title">Portfolio</h1>
-        </div>
-      </section>
-
-      <section className="portfolio-content">
-        <div className="container-wide">
-          <div className="portfolio-filters reveal">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
-                onClick={() => setActiveFilter(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+    <PageTransition>
+      <main className="portfolio-page">
+        <section className="page-hero">
+          <img src="/images/portfolio-hero.jpg" alt="Nukitchens portfolio" className="page-hero-img" />
+          <div className="page-hero-overlay" />
+          <div className="page-hero-content">
+            <span className="hero-label">Our Work</span>
+            <h1 className="hero-title">Portfolio</h1>
           </div>
+        </section>
 
-          <div className={`portfolio-grid ${fading ? 'fading' : ''}`}>
-            {visible.map((p) => (
-              <div key={p.name} className="portfolio-card">
-                <div className="portfolio-card-img">
-                  <img src={p.image} alt={p.name} loading="lazy" />
-                  <div className="portfolio-card-overlay">
-                    <span className="portfolio-card-cat accent-text">{p.category}</span>
-                    <h3 className="portfolio-card-name">{p.name}</h3>
-                  </div>
-                </div>
+        <section className="portfolio-content">
+          <div className="container-wide">
+            <Reveal>
+              <div className="portfolio-filters">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
+                    onClick={() => setActiveFilter(cat)}
+                  >
+                    {cat}
+                  </button>
+                ))}
               </div>
-            ))}
+            </Reveal>
+
+            <motion.div className="portfolio-grid" layout>
+              <AnimatePresence mode="popLayout">
+                {visible.map((p, idx) => (
+                  <motion.div
+                    key={p.name}
+                    className="portfolio-card"
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    onClick={() => openLightbox(idx)}
+                  >
+                    <div className="portfolio-card-img">
+                      <img src={p.image} alt={p.name} loading="lazy" />
+                      <div className="portfolio-card-overlay">
+                        <span className="portfolio-card-cat accent-text">{p.category}</span>
+                        <h3 className="portfolio-card-name">{p.name}</h3>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        <Lightbox
+          images={visible}
+          activeIndex={lightboxIndex}
+          onClose={closeLightbox}
+          onNav={navLightbox}
+        />
+      </main>
+    </PageTransition>
   );
 }

@@ -83,11 +83,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  transition: opacity var(--transition-base);
-}
-
-.portfolio-grid.fading {
-  opacity: 0.3;
 }
 
 .portfolio-card-img {

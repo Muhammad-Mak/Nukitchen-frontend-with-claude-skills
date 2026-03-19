@@ -35,6 +35,11 @@
   pointer-events: none;
 }
 
+.hero-layout.is-visible {
+  opacity: 1;
+  z-index: 2;
+}
+
 .hero-layout.is-active {
   opacity: 1;
   z-index: 2;
@@ -524,6 +529,7 @@
   color: var(--color-accent);
   display: block;
   margin-bottom: var(--space-sm);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
